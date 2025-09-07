@@ -1,37 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+<p align="center">
+	<img src="public/logo.png" alt="Fooddel Logo" width="350"/>
+</p>
 
-First, run the development server:
+<h1 align="center">Fooddel</h1>
+
+<p align="center">
+	<a href="https://github.com/PierreDioJ/Fooddel"><img src="https://img.shields.io/github/license/PierreDioJ/Fooddel" alt="License"></a>
+	<a href="https://img.shields.io/github/last-commit/PierreDioJ/Fooddel"><img src="https://img.shields.io/github/last-commit/PierreDioJ/Fooddel" alt="Last Commit"></a>
+	<a href="https://img.shields.io/github/issues/PierreDioJ/Fooddel"><img src="https://img.shields.io/github/issues/PierreDioJ/Fooddel" alt="Issues"></a>
+</p>
+
+---
+
+## Введение
+
+Fooddel — это API для управления блюдами сервиса доставки еды. Проект позволяет получать, добавлять, изменять и удалять блюда через HTTP-запросы. Реализован на Next.js.
+
+---
+
+## Необходимые условия
+
+- Node.js >= 18.x
+- npm >= 9.x
+- ОС: Windows, macOS или Linux
+
+---
+
+## Установка
+
+1. Клонируйте репозиторий:
+	 ```bash
+	 git clone https://github.com/PierreDioJ/Fooddel.git
+	 cd Fooddel/fooddel
+	 ```
+2. Установите зависимости:
+	 ```bash
+	 npm install
+	 ```
+3. Запустите проект:
+	 ```bash
+	 npm run dev
+	 ```
+
+---
+
+## Порядок использования
+
+После запуска API будет доступен по адресу `http://localhost:3000`.
+
+### Основные эндпоинты:
+
+- `GET /api/dishes` — получить список блюд
+- `POST /api/dishes` — добавить блюдо (name, price)
+- `GET /api/dishes/{id}` — получить блюдо по id
+- `PUT /api/dishes/{id}` — обновить блюдо
+- `DELETE /api/dishes/{id}` — удалить блюдо
+
+### Пример запроса
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+curl -X POST http://localhost:3000/api/dishes \
+	-H "Content-Type: application/json" \
+	-d '{"name": "Паста Болоньезе", "price": 700}'
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Swagger UI
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Для удобной работы с API и просмотра документации перейдите на [http://localhost:3000/swagger](http://localhost:3000/swagger)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Скриншот
 
-To learn more about Next.js, take a look at the following resources:
+![Swagger UI Screenshot](public/swaggersc.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Fooddel
+---
