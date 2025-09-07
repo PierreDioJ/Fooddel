@@ -1,0 +1,139 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Food Delivery Dishes API",
+    "version": "1.0.0",
+    "description": "API для управления блюдами доставки еды"
+  },
+  "paths": {
+    "/api/dishes": {
+      "get": {
+        "summary": "Получить список блюд",
+        "responses": {
+          "200": {
+            "description": "Список блюд",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Dish" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Добавить блюдо",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DishInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Блюдо добавлено",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Dish" }
+              }
+            }
+          },
+          "400": { "description": "Ошибка валидации" }
+        }
+      }
+    },
+    "/api/dishes/{id}": {
+      "get": {
+        "summary": "Получить блюдо по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Блюдо",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Dish" }
+              }
+            }
+          },
+          "404": { "description": "Не найдено" }
+        }
+      },
+      "put": {
+        "summary": "Обновить блюдо по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/DishInput" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Блюдо обновлено",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Dish" }
+              }
+            }
+          },
+          "404": { "description": "Не найдено" }
+        }
+      },
+      "delete": {
+        "summary": "Удалить блюдо по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Удалено" },
+          "404": { "description": "Не найдено" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Dish": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "price": { "type": "number" }
+        }
+      },
+      "DishInput": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "price": { "type": "number" }
+        },
+        "required": ["name", "price"]
+      }
+    }
+  }
+}
